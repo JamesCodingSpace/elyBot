@@ -2,6 +2,12 @@ import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLineEdit, QSlider, QLabel, QMainWindow, QAction, QToolBar, QMessageBox
 from PyQt5.QtCore import Qt
 
+sys.path.append("./functions")
+sys.path.append("./settings")
+sys.path.append("./BotMedien")
+
+from inv_bot import open_inv_link # type: ignore
+
 class MyMainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -13,6 +19,7 @@ class MyMainWindow(QMainWindow):
         toolbar = QToolBar()
         self.addToolBar(toolbar)
         action = QAction('Bot Einladen', self)
+        action.triggered.connect(self.bot_einladen_clicked)
         toolbar.addAction(action)
 
         # Hauptwidget
@@ -49,17 +56,17 @@ class MyMainWindow(QMainWindow):
         left_button_layout = QHBoxLayout()
         left_layout.addLayout(left_button_layout)
 
-        left_button1 = QPushButton("Bot starten")
-        left_button1.setStyleSheet("border: 1px solid white;")
-        left_button1.clicked.connect(self.button1_clicked)
-        left_button2 = QPushButton("Bot beenden")
-        left_button2.setStyleSheet("border: 1px solid white;")
-        left_button2.clicked.connect(self.button2_clicked)
-        left_button_layout.addWidget(left_button1)
-        left_button_layout.addWidget(left_button2)
+        button_start_timer_bot = QPushButton("Bot starten")
+        button_start_timer_bot.setStyleSheet("border: 1px solid white;")
+        button_start_timer_bot.clicked.connect(self.start_timer_bot_clicked)
+        button_stop_timer_bot = QPushButton("Bot beenden")
+        button_stop_timer_bot.setStyleSheet("border: 1px solid white;")
+        button_stop_timer_bot.clicked.connect(self.stop_timer_bot_clicked)
+        left_button_layout.addWidget(button_start_timer_bot)
+        left_button_layout.addWidget(button_stop_timer_bot)
 
         # Spalte Mitte
-        self.slider_label = QLabel("Slider:")
+        self.slider_label = QLabel("Felipe Spam Stufe 1")
         self.slider_label.setStyleSheet("color: white;")
         center_layout.addWidget(self.slider_label)
 
@@ -73,30 +80,30 @@ class MyMainWindow(QMainWindow):
         center_button_layout = QHBoxLayout()
         center_layout.addLayout(center_button_layout)
 
-        center_button1 = QPushButton("Button 3")
-        center_button1.setStyleSheet("border: 1px solid white;")
-        center_button1.clicked.connect(self.button3_clicked)
-        center_button2 = QPushButton("Button 4")
-        center_button2.setStyleSheet("border: 1px solid white;")
-        center_button2.clicked.connect(self.button4_clicked)
-        center_button_layout.addWidget(center_button1)
-        center_button_layout.addWidget(center_button2)
+        button_start_spam_bot = QPushButton("Bot starten")
+        button_start_spam_bot.setStyleSheet("border: 1px solid white;")
+        button_start_spam_bot.clicked.connect(self.start_spam_bot_clicked)
+        button_stop_spam_bot = QPushButton("Bot stoppen")
+        button_stop_spam_bot.setStyleSheet("border: 1px solid white;")
+        button_stop_spam_bot.clicked.connect(self.stop_spam_bot_clicked)
+        center_button_layout.addWidget(button_start_spam_bot)
+        center_button_layout.addWidget(button_stop_spam_bot)
 
         # Spalte rechts
-        right_label = QLabel("Buttons:")
+        right_label = QLabel("Weitere")
         right_label.setStyleSheet("color: white;")
         right_layout.addWidget(right_label)
 
-        button1 = QPushButton("Button 5")
+        button1 = QPushButton("n. V")
         button1.setStyleSheet("border: 1px solid white;")
         button1.clicked.connect(self.button5_clicked)
-        button2 = QPushButton("Button 6")
+        button2 = QPushButton("n. V")
         button2.setStyleSheet("border: 1px solid white;")
         button2.clicked.connect(self.button6_clicked)
-        button3 = QPushButton("Button 7")
+        button3 = QPushButton("n. V")
         button3.setStyleSheet("border: 1px solid white;")
         button3.clicked.connect(self.button7_clicked)
-        button4 = QPushButton("Button 8")
+        button4 = QPushButton("n. V")
         button4.setStyleSheet("border: 1px solid white;")
         button4.clicked.connect(self.button8_clicked)
         right_layout.addWidget(button1)
@@ -104,29 +111,29 @@ class MyMainWindow(QMainWindow):
         right_layout.addWidget(button3)
         right_layout.addWidget(button4)
 
-    def button1_clicked(self):
+    def start_timer_bot_clicked(self):
         QMessageBox.information(self, "Button 1", "Button 1 wurde geklickt!")
 
-    def button2_clicked(self):
+    def stop_timer_bot_clicked(self):
         QMessageBox.information(self, "Button 2", "Button 2 wurde geklickt!")
 
-    def button3_clicked(self):
+    def start_spam_bot_clicked(self):
         QMessageBox.information(self, "Button 3", "Button 3 wurde geklickt!")
 
-    def button4_clicked(self):
+    def stop_spam_bot_clicked(self):
         QMessageBox.information(self, "Button 4", "Button 4 wurde geklickt!")
 
     def button5_clicked(self):
-        QMessageBox.information(self, "Button 5", "Button 5 wurde geklickt!")
+        QMessageBox.information(self, "Button 5", "Noch nicht vorhanden")
 
     def button6_clicked(self):
-        QMessageBox.information(self, "Button 6", "Button 6 wurde geklickt!")
+        QMessageBox.information(self, "Button 6", "Noch nicht vorhanden")
 
     def button7_clicked(self):
-        QMessageBox.information(self, "Button 7", "Button 7 wurde geklickt!")
+        QMessageBox.information(self, "Button 7", "Noch nicht vorhanden")
 
     def button8_clicked(self):
-        QMessageBox.information(self, "Button 8", "Button 8 wurde geklickt!")
+        QMessageBox.information(self, "Button 8", "Noch nicht vorhanden")
 
     def slider_moved(self, value):
         if value == 0:
@@ -141,6 +148,8 @@ class MyMainWindow(QMainWindow):
         elif value == 3:
             self.slider_label.setText("Totaler Spam für alle")
             
+    def bot_einladen_clicked(self):
+        open_inv_link()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

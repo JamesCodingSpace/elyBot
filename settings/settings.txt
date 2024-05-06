@@ -1,0 +1,12 @@
+# duration in Minuten
+
+channel_timer:1236999352329965608
+
+channel_felipe_spam:
+duration_felipe_spam:120
+spam_user_id:1180059253990510656
+
+channel_full_spam:
+duration_full_spam:1
+
+app_id:1237005490484019284

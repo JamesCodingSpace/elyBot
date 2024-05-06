@@ -1,17 +1,13 @@
 import discord
 import asyncio
 import random
+from get_token import get_token
+from setting_functions import get_channel_id, get_duration
 
-# Hier die Discord-Bot-Token einfügen
-TOKEN = None
+TOKEN = get_token()
+CHANNEL_ID = get_channel_id()
+TIMER_DURATION = 60 * get_duration()
 
-# Hier die Kanal-ID einfügen, in dem der Bot die Nachricht senden soll
-CHANNEL_ID = '1236999352329965608'
-
-# Zeit in Sekunden für den Timer
-TIMER_DURATION = 40*60  # 10 Minuten
-
-# Intents konfigurieren
 intents = discord.Intents.default()
 intents.typing = False
 intents.presences = False
@@ -22,7 +18,6 @@ client = discord.Client(intents=intents)
 async def on_ready():
     print(f'Eingeloggt als {client.user}')
 
-    # Timer starten, wenn der Bot bereit ist
     await start_timer()
 
 async def start_timer():
@@ -55,7 +50,6 @@ async def start_timer():
 
         await channel.send(f'**Verbleibende Zeit: {hours} {str_stunde} {minutes} {str_minute}. Das heißt wir haben {percent_formatted}% geschafft! Ein YaY in den Chat!**')
 
-        # Überprüfen, ob 25%, 50% oder 75% der Zeit vergangen ist
         if percent_event == 75:
             await channel.send("3/4 To Go!")
             await channel.send(file=discord.File("C:/Users/jamie/Documents/DHBW/BotMedien/this-is-fine-fire.mp4"))
@@ -66,12 +60,10 @@ async def start_timer():
             await channel.send("Nur noch 25% der Zeit übrig!")
             await channel.send(file=discord.File("C:/Users/jamie/Documents/DHBW/BotMedien/its-only-the-beginning-buddy.mp4"))
 
-        # 60 Sekunden warten
         await asyncio.sleep(60)
         remaining_time -= 60
 
-    # Timer abgelaufen Nachricht senden
-    await channel.send('Stunde vorbei!')
+    await channel.send('**Die Stunde ist endlisch vorbei! Wir haben es geschafft Leute!**')
     await channel.send(file=discord.File("C:/Users/jamie/Documents/DHBW/BotMedien/done-so-done.mp4"))
 
 client.run(TOKEN)

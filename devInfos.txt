@@ -2,3 +2,5 @@ Momentan baue ich ein GUI mit PyQt5 auf, dass die Bediehnung des Bots vereinfach
 Die Funktionen sind dementsprechend noch nicht umgeschrieben auf das neue UI, somit nur als Programm selbst funktional.
 Neue Funktionen Bitte mit "_test.py" kennzeichnen, füge ich dann ins UI ein, sobald dies fertig ist
 Möge der Ely Bot auf ewig leben XD
+
+Bot invite https://discord.com/oauth2/authorize?client_id=1237005490484019284&scope=bot&permissions=0
