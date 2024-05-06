@@ -1,0 +1,4 @@
+Momentan baue ich ein GUI mit PyQt5 auf, dass die Bediehnung des Bots vereinfachen soll.
+Die Funktionen sind dementsprechend noch nicht umgeschrieben auf das neue UI, somit nur als Programm selbst funktional.
+Neue Funktionen Bitte mit "_test.py" kennzeichnen, füge ich dann ins UI ein, sobald dies fertig ist
+Möge der Ely Bot auf ewig leben XD
